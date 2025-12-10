@@ -1,0 +1,32 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{FBH{\etalchar{+}}22}
+
+\bibitem[FBH{\etalchar{+}}22]{AlphaTensor2022}
+Alhussein Fawzi, Matej Balog, Aja Huang, Thomas Hubert, and Bernardino Romera-Paredes et~al.
+\newblock Discovering faster matrix multiplication algorithms with reinforcement learning.
+\newblock {\em Nature}, 2022.
+
+\bibitem[HL13]{10.1145/2512329}
+Christopher~J. Hillar and Lek-Heng Lim.
+\newblock Most tensor problems are np-hard.
+\newblock {\em J. ACM}, 60(6):45, 2013.
+
+\bibitem[SHea18]{AlphaZero2017}
+David Silver, Thomas Hubert, and Julian~Schrittwieser et~al.
+\newblock Mastering chess and shogi by self-play with a general reinforcement learning algorithm.
+\newblock {\em Science}, 2018.
+
+\bibitem[SL24]{OpenTensor}
+Yiwen Sun and Wenye Li.
+\newblock Opentensor: Reproducing faster matrix multiplication discovering algorithms, 2024.
+
+\bibitem[Str69]{Strassen1969}
+Volker Strassen.
+\newblock Gaussian elimination is not optimal.
+\newblock {\em Numerische Mathematik}, 13(4):354--356, 1969.
+
+\bibitem[Tia22]{zhihu_analysis}
+Keyu Tian.
+\newblock Comprehensive analysis of deepmind alphatensor, 2022.
+
+\end{thebibliography}

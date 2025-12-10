@@ -1,0 +1,18 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{FBH{\etalchar{+}}22}
+
+\bibitem[FBH{\etalchar{+}}22]{AlphaTensor2022}
+Alhussein Fawzi, Matej Balog, Aja Huang, Thomas Hubert, and Bernardino Romera-Paredes et~al.
+\newblock Discovering faster matrix multiplication algorithms with reinforcement learning.
+\newblock {\em Nature}, 2022.
+
+\bibitem[SHea18]{AlphaZero2017}
+David Silver, Thomas Hubert, and Julian~Schrittwieser et~al.
+\newblock Mastering chess and shogi by self-play with a general reinforcement learning algorithm.
+\newblock {\em Science}, 2018.
+
+\bibitem[Tia22]{zhihu_analysis}
+Keyu Tian.
+\newblock Comprehensive analysis of deepmind alphatensor, 2022.
+
+\end{thebibliography}
