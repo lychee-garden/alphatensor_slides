@@ -11,7 +11,7 @@
 \usepackage[blue]{TongjiBeamer}
 
 \author[DeepMind]{小组：李致远、冯文喆、魏睿、宋泽顷、周启民}
-\title{AlphaTensor详解}
+\title{AlphaTensor}
 \subtitle{Discovering faster matrix multiplication algorithms with reinforcement learning}
 \institute{同济大学物理科学与工程学院}
 \date{\today}
@@ -49,27 +49,13 @@
 % =======================================================
 \section{背景介绍}
 
-\begin{frame}{AlphaTensor 概述}
-    \begin{block}{核心理念}
-        “Discovering faster matrix multiplication algorithms with reinforcement learning”利用强化学习对矩阵乘法流程进行自动设计。它的强化学习的思想与基本架构，来自于alphazero。
-    \end{block}
-    
-    \vspace{0.5cm}
-    
-    \begin{itemize}
-        \item \textbf{问题描述}：在一个三维矩阵 $T_n = \sum_{r=1}^{R} u^{(r)} \otimes v^{(r)} \otimes w^{(r)}$ 与一个矩阵乘法之间构建映射。
-        \item \textbf{解法思路}：用强化学习，通过多次自我博弈，找到这个矩阵 $T_n$ 的最小的低秩分解。
-        \item \textbf{解法细节}：使用transformer对于矩阵 $T_n$ 提取特征后，policy头与value头计算低秩分解的下一步的潜在概率与得分。使用MCTS剪枝搜索，产出一个完整的低秩分解。
-    \end{itemize}
-\end{frame}
-
 \begin{frame}{为什么选择这篇文章？}
     \begin{itemize}
-        \item\textbf{顶尖团队}：本文由 \textcolor{blue}{Google DeepMind} 团队创作
+        \item\textbf{本文作者}，是 \textcolor{blue}{Google DeepMind} 团队的研究员。
         \begin{itemize}
             \item DeepMind 是人工智能领域的领军机构（AlphaGo、AlphaFold 等），DeepMind 团队联合创始人获得2024诺贝尔化学奖。
         \end{itemize}
-        \item\textbf{学术影响力}：论文发表在\textcolor{red}{\textbf{Nature(2022)}}，引用次数已超过 \textcolor{red}{\textbf{500$+$}}
+        \item\textbf{学术影响力}，论文发表在\textcolor{red}{\textbf{Nature(2022)}}，引用次数超过 \textcolor{red}{\textbf{500}}，github star超过 \textcolor{red}{\textbf{2800}}。
     \end{itemize}
     \vspace{0.3cm}
     \begin{center}
@@ -77,13 +63,27 @@
     \end{center}
 \end{frame}
 
+\begin{frame}{AlphaTensor 概述}
+    \begin{block}{核心理念}
+        “Discovering faster matrix multiplication algorithms with reinforcement learning”利用强化学习对矩阵乘法流程进行自动设计。
+    \end{block}
+    
+    \vspace{0.5cm}
+    
+    \begin{itemize}
+        \item \textbf{问题描述}：将一个矩阵乘法与一个张量 $T_n = \sum_{r=1}^{R} u^{(r)} \otimes v^{(r)} \otimes w^{(r)}$ 构建映射。
+        \item \textbf{解法思路}：沿用alphazero强化学习的基本架构，通过多次自我博弈，找到矩阵 $T_n$ 的最小的低秩分解。
+        \item \textbf{解法细节}：基于transformer架构。对矩阵 $T_n$ 提取嵌入特征后，用策略头与价值头计算下一步的秩-1分解与得分。使用MCTS剪枝搜索，产出一个完整的低秩分解。
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{为什么关注矩阵乘法？}
     \begin{itemize}
-        \item \textbf{核心地位}：矩阵乘法是深度学习（全连接层、Conv层、transformer多头注意力）和科学计算的基石。
-        \item \textbf{优化维度}：
+        \item \textbf{核心地位},矩阵乘法是深度学习（全连接层、Conv层、transformer层）和科学计算的基石。
+        \item \textbf{优化维度}
         \begin{itemize}
             \item \emph{System角度}：向量化、访存优化（Cache命中）、并行计算。
-            \item \emph{Math角度(本文研究方向)}：减少数值乘法的计算次数（乘法开销 $\gg$ 加法开销）。
+            \item \emph{Math角度(本文研究方向)}：因为乘法开销 $\gg$ 加法开销，减少数值乘法的计算次数能显著提升性能。
         \end{itemize}
     \end{itemize}
     \begin{alertblock}{Strassen算法的启示 (1969)}
@@ -102,7 +102,7 @@
             \begin{itemize}
                 \item \textbf{硬件层面的动机}：
                 \begin{itemize}
-                    \item 简单理解为：乘法器就是由加法器堆叠起来的。
+                    \item 可以简单理解为，乘法器就是由加法器堆叠起来的。
                     \item 执行乘法的时间是加法的约 \textcolor{red}{\textbf{3.5倍}}。
                     \item 减少乘法次数 = 实际性能提升
                 \end{itemize}
@@ -128,42 +128,22 @@
 
 \begin{frame}{AlphaTensor 概述}
     \begin{block}{核心理念}
-        “Discovering faster matrix multiplication algorithms with reinforcement learning”利用强化学习对矩阵乘法流程进行自动设计。它的强化学习的思想与基本架构，来自于alphazero。
+        “Discovering faster matrix multiplication algorithms with reinforcement learning”利用强化学习对矩阵乘法流程进行自动设计。
     \end{block}
     
     \vspace{0.5cm}
     
     \begin{itemize}
-        \item \textbf{问题描述}：在一个三维矩阵 $T_n = \sum_{r=1}^{R} u^{(r)} \otimes v^{(r)} \otimes w^{(r)}$ 与一个矩阵乘法之间构建映射。
-        \item \textbf{解法思路}：用强化学习，通过多次自我博弈，找到这个矩阵 $T_n$ 的最小的低秩分解。
-        \item \textbf{解法细节}：使用transformer对于矩阵 $T_n$ 提取特征后，policy头与value头计算低秩分解的下一步的潜在概率与得分。使用MCTS剪枝搜索，产出一个完整的低秩分解。
+        \item \textbf{问题描述}：将一个矩阵乘法与一个张量 $T_n = \sum_{r=1}^{R} u^{(r)} \otimes v^{(r)} \otimes w^{(r)}$ 构建映射。
+        \item \textbf{解法思路}：沿用alphazero强化学习的基本架构，通过多次自我博弈，找到矩阵 $T_n$ 的最小的低秩分解。
+        \item \textbf{解法细节}：基于transformer架构。对矩阵 $T_n$ 提取嵌入特征后，用策略头与价值头计算下一步的秩-1分解与得分。使用MCTS剪枝搜索，产出一个完整的低秩分解。
     \end{itemize}
 \end{frame}
 
 % =======================================================
 \section{核心原理}
 
-\begin{frame}{问题描述：搜索空间的构建}
-    AlphaTensor 将寻找算法抽象为寻找 \textbf{3D张量分解} 的过程。
-    
-    \begin{exampleblock}{对应关系 \textcircled{1}：矩阵乘定义 $\leftrightarrow$ 表征张量 $T_n$}
-        \begin{itemize}
-            \item 一种尺寸的矩阵乘法定义（如 $2\times2$）唯一对应一个三维张量 $T_n$。
-            \item 张量中的元素为 0 或 1，代表结果矩阵中位置的值由哪些输入元素相乘得到。
-        \end{itemize}
-    \end{exampleblock}
-
-    \begin{exampleblock}{对应关系 \textcircled{2}：低秩分解 $\leftrightarrow$ 算法流程}
-        \begin{itemize}
-            \item 表征张量的 \textbf{秩 (Rank)} = 算法所需的 \textbf{乘法次数}。
-            \item 将 $T_n$ 分解为 $R$ 个秩-1 张量的和：
-            \[ T_n = \sum_{r=1}^{R} u^{(r)} \otimes v^{(r)} \otimes w^{(r)} \]
-            \item 每一组 $(u, v, w)$ 对应算法中的一步乘法操作。
-        \end{itemize}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}{问题描述：直观解释}
+\begin{frame}{建立映射：直观解释}
     \framesubtitle{以 $2 \times 2 \times 2$ 矩阵为例}
     
     \begin{itemize}
@@ -172,7 +152,7 @@
         \begin{itemize}
             \item \textcolor{green!50!black}{绿色矩阵 (U)}：第一个乘数的线性组合
             \item \textcolor{purple}{紫色矩阵 (V)}：第二个乘数的线性组合
-            \item \textcolor{orange}{橙色矩阵 (W)}：最终结果的计算方式
+            \item \textcolor{orange}{橙色矩阵 (W)}：结果矩阵的线性组合
         \end{itemize}
     \end{itemize}
     
@@ -182,24 +162,38 @@
         \includegraphics[width=0.95\textwidth,height=0.5\textheight,keepaspectratio]{images/zhiguanjieshi.png}
     \end{center}
 \end{frame}
+
+\begin{frame}{建立映射：搜索空间的构建}
+    AlphaTensor 将寻找算法抽象为寻找 \textbf{3D张量分解} 的过程。
     
+    \begin{exampleblock}{对应关系 \textcircled{1}：矩阵乘定义 $\leftrightarrow$ 表征张量 $T_n$}
+        \begin{itemize}
+            \item 一种尺寸的矩阵乘法定义（如 $2\times2$）唯一对应一个三维张量 $T_n$。张量中的元素为$\{-2, -1, 0, 1, 2\}$，代表结果矩阵中位置的值由哪些输入元素相乘得到。
+        \end{itemize}
+    \end{exampleblock}
+
+    \begin{exampleblock}{对应关系 \textcircled{2}：低秩分解 $\leftrightarrow$ 算法流程}
+        \begin{itemize}
+            \item 表征张量的 \textbf{秩 (Rank)} = 算法所需的 \textbf{乘法次数}。
+            \item 将 $T_n$ 分解为 $R$ 个秩-1 张量的和，$T_n$的大小为$n^2 \times n^2 \times n^2$，记为$S \times S \times S$，\[ T_n = \sum_{r=1}^{R} u^{(r)} \otimes v^{(r)} \otimes w^{(r)} \]
+        \end{itemize}
+    \end{exampleblock}
+\end{frame}
 
 \begin{frame}{强化学习建模}
     \begin{itemize}
-        \item \textbf{游戏目标}：用尽可能少的步数（秩-1张量）将初始张量 $T_n$ 减为零张量。
-        \item \textbf{状态 (State)}：当前剩余的张量 $S_t$（初始为 $T_n$）。
-        \item \textbf{动作 (Action)}：选择三个向量 $u, v, w$ 构成一个秩-1张量。
-            \begin{itemize}
-                \item \emph{离散化}：系数限制在 $\{-2, -1, 0, 1, 2\}$ 中，剪枝搜索空间。
-            \end{itemize}
-        \item \textbf{状态更新}：$S_{t+1} \leftarrow S_t - u \otimes v \otimes w$
+        \item \textbf{目标}，用尽可能少的步数（秩-1张量）将初始张量 $T_n$ 减为零张量。
+        \item \textbf{状态 (State)}，当前剩余的张量 $S_t$（初始为 $T_n$）。
+        \item \textbf{动作 (Action)}，选择三个向量 $u, v, w$ 构成一个秩-1张量。
+        \item \textbf{动作选择}，通过蒙特卡洛树搜索（MCTS），选择一个最优的动作。
+        \item \textbf{状态更新}，$S_{t+1} \leftarrow S_t - u \otimes v \otimes w$
     \end{itemize}
 
     \begin{alertblock}{奖励函数 (Reward)}
         \begin{itemize}
             \item 每走一步，Reward = -1（鼓励更少步数）。
             \item 若步骤超限未归零，施加额外惩罚（与剩余张量的秩相关）。
-            \item 可选：加入硬件运行时延时作为负奖励（针对特定硬件优化）。
+            \item 加入硬件运行时延时作为负奖励（针对特定硬件优化）。
         \end{itemize}
     \end{alertblock}
 \end{frame}
@@ -209,45 +203,40 @@
         \begin{column}{0.35\textwidth}
             \centering
             \textbf{\small 强化学习典型架构}
-            
             \vspace{0.3cm}
-            
             \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/RL.png}
+            \textbf{\small 蒙特卡洛树搜索}
+            \vspace{0.3cm}
+            \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/MCTS.png}
+            \vspace{-0.5cm}
+            \begin{itemize}
+                \small
+                \item 环境/状态：$T_n$
+                \item 动作：策略头
+                \item 奖励：价值头
+            \end{itemize}
         \end{column}
         
         \begin{column}{0.85\textwidth}
             \centering
             \textbf{AlphaTensor架构}
-            
             \vspace{0.3cm}
-            
             \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{images/jiagou.png}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}{网络架构与搜索算法}
-    \begin{columns}
-        \begin{column}{0.6\textwidth}
-             \textbf{AlphaZero 风格的 RL + MCTS}
-             \begin{itemize}
-                 \item \textbf{MCTS (蒙特卡洛树搜索)}：用于规划下一步动作，平衡探索(Explore)与利用(Exploit)。
-                 \item \textbf{Policy Network}：基于 Transformer 架构。
-                 \begin{itemize}
-                     \item 输入：当前张量状态。
-                     \item 输出：建议的动作分布。
-                     \item 包含 Cross-attention, Causal self-attention 等机制。
-                 \end{itemize}
-                 \item \textbf{Value Network}：预测当前状态归零所需的最小步数。
-             \end{itemize}
-        \end{column}
-        \begin{column}{0.6\textwidth}
-            \begin{center}
-                \vspace{0.5cm}
-                \includegraphics[width=\textwidth,height=0.75\textheight,keepaspectratio]{images/network_architecture.png}
-            \end{center}
-        \end{column}
-    \end{columns}
+    \begin{itemize}
+        \item \textbf{MCTS}：用于规划下一步动作，平衡探索(Explore)与利用(Exploit)
+        \item \textbf{Torso}：当前时间$T$，提取张量 $T \times T_n$ 的嵌入特征
+        \item \textbf{Policy Head}：依次输出$k$个令牌，与$u \otimes v \otimes w$等价，每个token的维度为$d$，其中$k \times d = 3S$
+        \item \textbf{Value Head}：预测奖励，即当前状态归零所需的最小步数
+    \end{itemize}
+    \vspace{-0.4cm}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth,height=0.6\textheight,keepaspectratio]{images/network_architecture.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}{AlphaTensor架构细节1}
@@ -255,18 +244,37 @@
         \includegraphics[width=1.2\textwidth,height=0.40\textheight,keepaspectratio]{images/Torso diagram.png}
     \end{center}
     
-    \vspace{0.5cm}
-    
-    \begin{center}
-        \includegraphics[width=0.6\textwidth,height=0.4\textheight,keepaspectratio]{images/value head diagram.png}
-    \end{center}
+    \begin{columns}[T]
+        \begin{column}{0.6\textwidth}
+            \begin{itemize}
+                \small\small
+                \item \textbf{Torso}，输入历史张量$T \times S \times S \times S$，输出嵌入特征$3S^2 \times c$
+                \item \textbf{Value Head}，输入小向量$1 \times c$，输出小向量$1 \times q$
+                \item \textbf{超参数}，$c = 512, q = 128$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \vspace{0.5cm}
+            \includegraphics[width=1.0\textwidth,height=0.4\textheight,keepaspectratio]{images/value head diagram.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{AlphaTensor架构细节2}
     \vspace{-0.3cm}
-    \begin{center}
-        \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{images/policy head diagram.png}
-    \end{center}
+    \begin{columns}[T]
+        \begin{column}{0.4\textwidth}
+            \vspace{1.5cm}
+            \begin{itemize}
+                \small\small
+                \item \textbf{Policy Head}，输入零向量$1 \times d$与嵌入特征$3S^2 \times c$，输出令牌$1 \times d$，重复$k$次
+                \item \textbf{超参数}，$d=S , k=3 , c = 512$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{images/policy head diagram.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 % =======================================================
@@ -299,24 +307,33 @@
 \end{frame}
 
 \begin{frame}{理论突破：4*4*4矩阵的低秩分解}
-    \begin{center}
-        \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{images/444_new_find.png}
-    \end{center}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \centering\vspace{1.5cm}
+            \includegraphics[width=\textwidth,height=0.4\textheight,keepaspectratio]{images/444_up.png}
+            \vspace{0.2cm}
+            \includegraphics[width=0.55\textwidth,height=0.4\textheight,keepaspectratio]{images/444_down.png}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{images/444_new_find.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{实际应用：硬件加速}
-    AlphaTensor 不仅理论上减少了计算次数，还能针对特定硬件（GPU V100, TPU v3）进行优化。
+    AlphaTensor理论上减少了计算次数，并针对特定硬件（GPU V100, TPU v3）进行优化。
     
     \begin{exampleblock}{Runtime 优化}
         \begin{itemize}
-            \item 在大尺寸矩阵 ($ > 8192$) 上，AlphaTensor 发现的算法在 GPU/TPU 上均有显著加速。
-            \item 超越了标准的 cuBLAS 库性能。
+            \item 理论上，在大尺寸矩阵 ($ > 8192$) 上，AlphaTensor 发现的算法在 GPU/TPU 上均有显著加速。
+            \item 理论上，超越了标准的 cuBLAS 库性能。
         \end{itemize}
     \end{exampleblock}
 
     \begin{itemize}
-        \item 在矩阵尺寸增大时，加速比显著提升。
-        \item 证明了 AI 发现的算法具有更强的加速效果。
+        \item 理论上，在矩阵尺寸增大时，加速比显著提升。
+        \item 理论上，证明了 AI 发现的算法具有更强的加速效果。
     \end{itemize}
 \end{frame}
 
@@ -327,6 +344,7 @@
 \end{frame}
 
 \begin{frame}{消融实验}
+    \framesubtitle{以 $4 \times 4 \times 4$ 矩阵为例}
     \begin{table}[h]
         \centering
         \small
@@ -350,20 +368,33 @@
     
     \begin{block}{结论}
         \small
-        完整的AlphaTensor达到最优性能（Rank = 49）。移除任何组件都会导致性能下降，\\
-        其中\textit{synthetic demonstrations}（合成演示）的影响最大。
+        完整的AlphaTensor达到最优性能（Rank = 49）。移除任何组件都会导致性能下降，其中\textit{synthetic demonstrations}（合成演示）的影响最大。
     \end{block}
 \end{frame}
 
-\begin{frame}{复现结果:训练部分}
+\begin{frame}{复现结果：模型训练}
     \begin{center}
-        \includegraphics[width=0.5\textwidth,keepaspectratio]{images/nvidia-smi.png}
+        \begin{columns}[T]
+            \begin{column}{0.45\textwidth}
+                \begin{itemize}
+                    \item 复现工作主要有两部分
+                \end{itemize}
+                \begin{enumerate}
+                    \item 复现强化学习模型训练，使用OpenTensor开源代码
+                    \item 复现最小的矩阵乘法次数的加速效果，使用AlphaTensor开源代码
+                \end{enumerate}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \includegraphics[width=1.0\textwidth,keepaspectratio]{images/nvidia-smi.png}
+            \end{column}
+        \end{columns}
+        
         \vspace{0.2cm}
         \includegraphics[width=1.0\textwidth,keepaspectratio]{images/RL_training.png}
     \end{center}
 \end{frame}
 
-\begin{frame}{复现结果:运算部分}
+\begin{frame}{复现结果：加速效果}
     \vspace{-0.3cm}
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
@@ -377,7 +408,7 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{复现结果:运算结果对照}
+\begin{frame}{复现结果：对照}
     \begin{table}[h]
         \centering
         \small
@@ -385,7 +416,7 @@
             \toprule
             \multirow{2}{*}{\textbf{矩阵尺寸}} & \multicolumn{2}{c|}{\textbf{Strassen$^2$}} & \multicolumn{2}{c}{\textbf{AlphaTensor}} \\
             \cmidrule(lr){2-3} \cmidrule(lr){4-5}
-            & \textbf{复现} & \textbf{原版} & \textbf{复现} & \textbf{原版} \\
+            & \textbf{复现} & \textbf{原文} & \textbf{复现} & \textbf{原文} \\
             \midrule
             $8192 $ & 5.35 & 4.3 & 8.55 & 8.5 \\
             $10240 $ & 15.98 & 6.8 & 19.11 & 10.7 \\
@@ -398,6 +429,10 @@
         \end{tabular}
         \caption{不同算法相对于 jnp.dot 的加速比（单位：\%）}
     \end{table}
+    \begin{itemize}
+        \item 相对地，AlphaTensor比标准库与Strassen$^2$都快
+        \item 绝对地，AlphaTensor运算8192矩阵乘法的时间近1分钟，运算20480矩阵乘法的时间近8分钟，远远慢于标准矩阵乘法。
+    \end{itemize}
 \end{frame}
 
 % =======================================================
@@ -406,52 +441,54 @@
 \begin{frame}{文章局限：工业实践角度}
     \textbf{\textcolor{blue}{硬件指令集的冲突}}
     \begin{itemize}
-        \item 所有\textbf{现代GPU}以\textcolor{blue}{Tensor Cores}为计算核心，这些硬件单元在物理电路层面，针对标准的$O(N^3)$算法逻辑进行高度优化。
-        \item 在Tensor Cores上，"标准乘法"极快。虽然AlphaTensor减少了乘法操作，但引入了更多加法操作和内存移动开销，在计算密集型硬件上往往得不偿失。
+        \item \textbf{现代GPU}均以\textcolor{blue}{Tensor Cores}为计算核心，这些硬件单元在物理电路层面，针对标准的$O(N^3)$算法逻辑进行高度优化。
+        \item \textbf{AlphaTensor}减少了乘法操作，但将内存开销由$O(2N)$\textbf{暴增}到$O(N^{2})$，得不偿失。
     \end{itemize}
     
     \textbf{\textcolor{blue}{数值稳定性}}
     \begin{itemize}
-        \item AlphaTensor通过复杂的加减法组合减少乘法，在浮点运算中容易引入\textcolor{red}{精度损失}，数值稳定性差。
-        \item 标准库倾向于选择\textbf{最稳定}的算法而非理论上最快的。
+        \item \textbf{标准库}倾向于选择\textbf{最稳定}的算法而非理论上最快的。
+        \item \textbf{AlphaTensor}通过复杂的加减法组合减少乘法，在浮点运算中容易引入\textcolor{red}{精度损失}，数值稳定性差。
     \end{itemize}
-    
-    \textbf{\textcolor{blue}{小矩阵 vs. 大矩阵 }}
-    \begin{itemize}
-        \item AlphaTensor主要优化\textcolor{blue}{极小矩阵核}（如$4 \times 4$），大矩阵可通过分块计算。
-        \item 标准库使用高度定制的汇编代码处理分块，将AlphaTensor算法强行集成到现有流水线需要\textcolor{red}{重写底层汇编优化}。
-    \end{itemize}
+
+    \begin{block}{结论}
+        \begin{itemize}
+            \item Strassen的年代，内存访问很慢，所以才开辟用数学优化矩阵乘法的道路。
+            \item 现在内存访问快，数据处理量大，优化矩阵乘法要靠系统层面整体的优化，不能只靠数学层面的取巧。
+        \end{itemize}
+    \end{block}
+
 \end{frame}
 
 
 \begin{frame}{文章局限：学术引用角度}
 
     \begin{itemize}
-        \item AlphaTensor之后，再也没出过有影响力的优化矩阵计算的工作
-        \item 论文引用数\textcolor{red}{\textbf{逐年减少}}，学术热度下降
+        \item 优化矩阵计算领域，AlphaTensor是久违的重大突破
+        \item 强化学习领域，论文引用数逐年减少，学术热度下降。引用数主要出自综述
     \end{itemize}
     
     \vspace{0.5cm}
     
     \begin{columns}[T]
-        \begin{column}{0.25\textwidth}
+        \begin{column}{0.3\textwidth}
             \centering
             \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{images/alphatensor_citation.png}
             \tiny AlphaTensor
         \end{column}
         
-        \begin{column}{0.25\textwidth}
+        \begin{column}{0.3\textwidth}
             \centering
             \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{images/alphatensor_connected.png}
         \end{column}
         
-        \begin{column}{0.25\textwidth}
+        \begin{column}{0.3\textwidth}
             \centering
             \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{images/alphafold_citation.png}
             \tiny AlphaFold
         \end{column}
         
-        \begin{column}{0.25\textwidth}
+        \begin{column}{0.3\textwidth}
             \centering
             \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{images/alphafold_connected.png}
         \end{column}
@@ -460,17 +497,17 @@
 
 \begin{frame}{文章贡献}
     \begin{itemize}        
-        \item \textbf{矩阵加速}：
+        \item \textbf{矩阵加速}
         \begin{itemize}
             \item  AlphaTensor 将大矩阵乘法次数的下界从$O(N^{2.807})$降低到了$O(N^{2.777})$。
         \end{itemize}
 
-        \item \textbf{AI for Science (Math/CS)}：
+        \item \textbf{AI for Science}
         \begin{itemize}
             \item 继 AlphaGo (围棋)、AlphaFold (蛋白质) 之后，DeepMind 在基础数学/理论计算机领域的突破。是强化学习的又一次成功应用。
         \end{itemize}
 
-        \item \textbf{未来展望}：
+        \item \textbf{未来展望}
         \begin{itemize}
             \item 优化其他经典算法/理论计算机科学方法的算法流程？
             \item 解决其他np-hard问题？
@@ -486,12 +523,12 @@
 \end{frame}
 
 \begin{frame}{人员分工}
-    \small % 缩小字体
-    \setlength{\tabcolsep}{12pt} % 增加列间距
-    \renewcommand{\arraystretch}{1.5} % 增加行间距
-    \begin{flushleft} % 左对齐
+    \small
+    \setlength{\tabcolsep}{12pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{flushleft}
         \begin{tabular}{c|c}
-            李致远 & 选题，演讲 \\
+            李致远 & 选题，复现，演讲 \\
             冯文喆 & 背景调研部分 \\
             魏睿 & 核心原理部分 \\
             宋泽顷 & 实验结果与总结展望部分 \\
@@ -507,6 +544,7 @@
         \begin{itemize}
             \item \url{https://gitee.com/lychee-garden/pre_alphatensor.git}
             \item \url{https://gitee.com/lychee-garden/pre_opentensor.git}
+            \item \url{https://gitee.com/lychee-garden/alphatensor_slides.git}
         \end{itemize}
     \end{flushleft}
 \end{frame}

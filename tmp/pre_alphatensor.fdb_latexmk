@@ -1,18 +1,18 @@
 # Fdb version 4
-["bibtex pre_alphatensor"] 1765376556.01508 "pre_alphatensor.aux" "pre_alphatensor.bbl" "pre_alphatensor" 1765376756.05027 0
+["bibtex pre_alphatensor"] 1765453641.87498 "pre_alphatensor.aux" "pre_alphatensor.bbl" "pre_alphatensor" 1765456488.60611 0
   "./refe.bib" 1765375393 1752 e9a0cb2a48927b8511787688d3d0bc43 ""
   "d:/Programs_installed_by_myself/texlive/2025/texmf-dist/bibtex/bst/base/alpha.bst" 1763544579 23907 a5f93555796fb564b924339521f10a7c ""
-  "pre_alphatensor.aux" 1765376496 7101 cfb697ed4f8385a6541262e1a23e5191 ""
+  "pre_alphatensor.aux" 1765456184 7688 d0448d8fa5f2ad46d94e75f27c60cb61 ""
   (generated)
   "pre_alphatensor.bbl"
   "pre_alphatensor.blg"
   (rewritten before read)
-["xdvipdfmx"] 1765376750.33215 "tmp/pre_alphatensor.xdv" "tmp/pre_alphatensor.pdf" "tmp/pre_alphatensor" 1765376756.06406 0
-  "tmp/pre_alphatensor.xdv" 1765376749 1247120 89949181c557460bd71c37120c1a4bfc "xelatex"
+["xdvipdfmx"] 1765456427.83691 "tmp/pre_alphatensor.xdv" "tmp/pre_alphatensor.pdf" "tmp/pre_alphatensor" 1765456488.71949 0
+  "tmp/pre_alphatensor.xdv" 1765456422 1256412 2f791101b245cf85dd66b5fe60f0c695 "xelatex"
   (generated)
   "tmp/pre_alphatensor.pdf"
   (rewritten before read)
-["xelatex"] 1765376742.57428 "d:/Tongji_Courses/gride3semester1/Computational Physics/pre/alphatensor/pre_alphatensor.tex" "tmp/pre_alphatensor.xdv" "pre_alphatensor" 1765376756.05086 0
+["xelatex"] 1765456385.07248 "d:/Tongji_Courses/gride3semester1/Computational Physics/pre/alphatensor/pre_alphatensor.tex" "tmp/pre_alphatensor.xdv" "pre_alphatensor" 1765456488.60808 0
   "TongjiBeamer.sty" 1763565498 3607 b1d99181dfdcc70a01ba8dfa6b9cbc97 ""
   "c:/Windows/Fonts/msyh.ttc" 1740825221 19704352 1e10e74402e59d54499af795caf0b135 ""
   "d:/Programs_installed_by_myself/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1763545593 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -275,8 +275,11 @@
   "d:/Programs_installed_by_myself/texlive/2025/texmf-dist/web2c/texmf.cnf" 1763544200 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "d:/Programs_installed_by_myself/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1763549955 5640305 582349646a859a443d771223490d1523 ""
   "d:/Programs_installed_by_myself/texlive/2025/texmf.cnf" 1763549345 713 e69b156964470283e0530f5060668171 ""
-  "d:/Tongji_Courses/gride3semester1/Computational Physics/pre/alphatensor/pre_alphatensor.tex" 1765376751 21106 f4938c66399226a0b337c10c10f7a8a1 ""
-  "images/444_new_find.png" 1765374574 653038 c6db9b9a3c884b96b2c21c0c8e9a2a2c ""
+  "d:/Tongji_Courses/gride3semester1/Computational Physics/pre/alphatensor/pre_alphatensor.tex" 1765456357 23138 7a693dc4ed3d97aee3f265bc40af3e9e ""
+  "images/444_down.png" 1765449317 112245 5be3ef81b60c0b4c3f2063535cccfca6 ""
+  "images/444_new_find.png" 1765449205 683895 dcda7737be200349d5df1ed7d8f732ef ""
+  "images/444_up.png" 1765449306 235650 435a3dacae7bf2b395a9386d7485b02b ""
+  "images/MCTS.png" 1765441949 6303888 310af9687df6a72c31ba10ca7b9be219 ""
   "images/RL.png" 1764903914 686553 5e921c6b7419689176124fe511f8a6c7 ""
   "images/RL_training.png" 1765374207 95999 c47abae84874bd067289ffbcf8e462bd ""
   "images/Torso diagram.png" 1764905893 430571 b2ed2746fe6f0715d1c2d170b72e2f7c ""
@@ -297,12 +300,12 @@
   "images/zhiguanjieshi.png" 1764862647 147720 943296be83884e903658ce8fe62756b5 ""
   "pic/tongji_bg_blue.pdf" 1763565498 1526792 7cf63c14919266829397c9c06377af9a ""
   "pic/tongji_logo.png" 1763565498 67019 222c5e52b6d450b581b4b367a8498a5b ""
-  "pre_alphatensor.bbl" 1765376556 1154 3915f271c7213c680453fa876af701ef "bibtex pre_alphatensor"
-  "pre_alphatensor.tex" 1765376751 21106 f4938c66399226a0b337c10c10f7a8a1 ""
-  "tmp/pre_alphatensor.aux" 1765376749 7688 d0448d8fa5f2ad46d94e75f27c60cb61 "xelatex"
-  "tmp/pre_alphatensor.nav" 1765376749 3951 9d69b84182222999347fc864159e39aa "xelatex"
-  "tmp/pre_alphatensor.out" 1765376749 300 de255018dfb7dd0558fffa99e380bdbd "xelatex"
-  "tmp/pre_alphatensor.toc" 1765376749 194 81a0a73532fcfa398fc0776f887f9c15 "xelatex"
+  "pre_alphatensor.bbl" 1765453643 1154 3915f271c7213c680453fa876af701ef "bibtex pre_alphatensor"
+  "pre_alphatensor.tex" 1765456357 23138 7a693dc4ed3d97aee3f265bc40af3e9e ""
+  "tmp/pre_alphatensor.aux" 1765456421 7688 d0448d8fa5f2ad46d94e75f27c60cb61 "xelatex"
+  "tmp/pre_alphatensor.nav" 1765456422 3951 9d69b84182222999347fc864159e39aa "xelatex"
+  "tmp/pre_alphatensor.out" 1765456422 300 de255018dfb7dd0558fffa99e380bdbd "xelatex"
+  "tmp/pre_alphatensor.toc" 1765456422 194 81a0a73532fcfa398fc0776f887f9c15 "xelatex"
   (generated)
   "tmp/pre_alphatensor.aux"
   "tmp/pre_alphatensor.log"

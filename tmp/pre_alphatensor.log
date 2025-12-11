@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.19)  10 DEC 2025 22:25
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.19)  11 DEC 2025 20:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1191,19 +1191,19 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 64.
  (d:/Programs_installed_by_myself/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+File: images/alphatensor_connected.png Graphic file (type bmp)
+<images/alphatensor_connected.png>
+
+Overfull \vbox (51.43285pt too high) detected at line 64
+ []
+
+
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 <use pic/tongji_bg_blue.pdf>
 [4
 
 ]
-File: images/alphatensor_connected.png Graphic file (type bmp)
-<images/alphatensor_connected.png>
-
-Overfull \vbox (50.21622pt too high) detected at line 78
- []
-
-
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 <use pic/tongji_bg_blue.pdf>
@@ -1245,17 +1245,8 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 [9
 
 ]
-LaTeX Font Info:    Trying to load font information for OMS+lmss on input line 164.
-LaTeX Font Info:    No file OMSlmss.fd. on input line 164.
-
-
-LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead on input line 164.
-
-
-Overfull \vbox (25.80052pt too high) detected at line 164
- []
-
+File: images/zhiguanjieshi.png Graphic file (type bmp)
+<images/zhiguanjieshi.png>
 
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
@@ -1263,8 +1254,17 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 [10
 
 ]
-File: images/zhiguanjieshi.png Graphic file (type bmp)
-<images/zhiguanjieshi.png>
+LaTeX Font Info:    Trying to load font information for OMS+lmss on input line 181.
+LaTeX Font Info:    No file OMSlmss.fd. on input line 181.
+
+
+LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead on input line 181.
+
+
+Overfull \vbox (6.79619pt too high) detected at line 181
+ []
+
 
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
@@ -1280,6 +1280,8 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 ]
 File: images/RL.png Graphic file (type bmp)
 <images/RL.png>
+File: images/MCTS.png Graphic file (type bmp)
+<images/MCTS.png>
 File: images/jiagou.png Graphic file (type bmp)
 <images/jiagou.png>
 
@@ -1297,11 +1299,6 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 File: images/network_architecture.png Graphic file (type bmp)
 <images/network_architecture.png>
 
-Overfull \hbox (4.55623pt too wide) detected at line 251
-[][][] $[]$[][][][][][][][] $[]$[][][][][][] 
- []
-
-
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 <use pic/tongji_bg_blue.pdf>
@@ -1311,7 +1308,7 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 File: images/Torso diagram.png Graphic file (type bmp)
 <images/Torso diagram.png>
 
-Overfull \hbox (17.15851pt too wide) in paragraph at lines 263--263
+Overfull \hbox (17.15851pt too wide) in paragraph at lines 261--261
  [] 
  []
 
@@ -1326,10 +1323,6 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 ]
 File: images/policy head diagram.png Graphic file (type bmp)
 <images/policy head diagram.png>
-
-Overfull \vbox (2.65594pt too high) detected at line 270
- []
-
 
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
@@ -1358,6 +1351,10 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 [19
 
 ]
+File: images/444_up.png Graphic file (type bmp)
+<images/444_up.png>
+File: images/444_down.png Graphic file (type bmp)
+<images/444_down.png>
 File: images/444_new_find.png Graphic file (type bmp)
 <images/444_new_find.png>
 
@@ -1393,6 +1390,10 @@ File: images/nvidia-smi.png Graphic file (type bmp)
 File: images/RL_training.png Graphic file (type bmp)
 <images/RL_training.png>
 
+Overfull \vbox (6.14832pt too high) detected at line 395
+ []
+
+
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 <use pic/tongji_bg_blue.pdf>
@@ -1403,10 +1404,6 @@ File: images/result_left.png Graphic file (type bmp)
 <images/result_left.png>
 File: images/result_middle.png Graphic file (type bmp)
 <images/result_middle.png>
-
-Overfull \vbox (6.68237pt too high) detected at line 378
- []
-
 
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
@@ -1426,6 +1423,10 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 [27
 
 ]
+Overfull \vbox (0.33272pt too high) detected at line 461
+ []
+
+
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 <use pic/tongji_bg_blue.pdf>
@@ -1440,6 +1441,11 @@ File: images/alphafold_citation.png Graphic file (type bmp)
 <images/alphafold_citation.png>
 File: images/alphafold_connected.png Graphic file (type bmp)
 <images/alphafold_connected.png>
+
+Overfull \hbox (4.55623pt too wide) detected at line 496
+[][][] [][][][][][][][][] [][][][][][][][][] [][][][][][][][][] [][][][][][][] 
+ []
+
 
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
@@ -1484,7 +1490,7 @@ Package fontspec Info:
 (fontspec)             Could not resolve font "FangSong/I" (it probably
 (fontspec)             doesn't exist).
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 512.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 550.
  (d:/Programs_installed_by_myself/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1507,7 +1513,7 @@ File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
 
 ]
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 35.82726pt on input line 518.
+(Font)              scaled to size 35.82726pt on input line 556.
 
 
 File: pic/tongji_bg_blue.pdf Graphic file (type pdf)
@@ -1537,12 +1543,12 @@ Package rerunfilecheck Info: File `pre_alphatensor.out' has not changed.
 (rerunfilecheck)             Checksum: DE255018DFB7DD0558FFFA99E380BDBD;300.
  ) 
 Here is how much of TeX's memory you used:
- 32940 strings out of 473832
- 722243 string characters out of 5719846
- 1136028 words of memory out of 5000000
- 55260 multiletter control sequences out of 15000+600000
+ 32982 strings out of 473832
+ 723257 string characters out of 5719846
+ 1137119 words of memory out of 5000000
+ 55299 multiletter control sequences out of 15000+600000
  608633 words of font info for 139 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,20n,123p,529b,853s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,20n,123p,529b,973s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on tmp/pre_alphatensor.xdv (34 pages, 1247120 bytes).
+Output written on tmp/pre_alphatensor.xdv (34 pages, 1256412 bytes).
